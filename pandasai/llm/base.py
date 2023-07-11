@@ -155,6 +155,7 @@ class BaseOpenAI(LLM, ABC):
     stop: Optional[str] = None
     # support explicit proxy for OpenAI
     openai_proxy: Optional[str] = None
+    api_base: Optional[str] = None
 
     def _set_params(self, **kwargs):
         """
