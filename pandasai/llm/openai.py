@@ -49,6 +49,7 @@ class OpenAI(BaseOpenAI):
     def __init__(
         self,
         api_token: Optional[str] = None,
+        api_base: Optional[str] = None,
         **kwargs,
     ):
         """
@@ -71,6 +72,10 @@ class OpenAI(BaseOpenAI):
                 "http": self.openai_proxy,
                 "https": self.openai_proxy
             }
+
+        self.api_base = api_base or os.getenv("OPENAI_API_BASE") or None
+        if self.api_base is not None:
+            openai.api_base = self.api_base
 
         self._set_params(**kwargs)
 
